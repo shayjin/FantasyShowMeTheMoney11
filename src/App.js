@@ -3,24 +3,46 @@ import './App.css';
 import { Rules } from "./Rules";
 import { Strategy } from "./Strategy";
 import {Link, Route, Routes, BrowserRouter } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import Table from 'react-bootstrap/Table';
 
 
 function NavBar() {
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">판타지 쇼미더머니 11</a>
-      
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/">현황</a>
-          <a class="nav-item nav-link" href="/Rules">규칙</a>
-          <a class="nav-item nav-link" href="/Strategy" aria-disabled="true">전략</a>
-        </div>
-      </div>
-    </nav>
+    <>
+    {['md'].map((expand) => (
+        <Navbar key={expand} bg="light" expand={expand} className="mb-3">
+          <Container fluid>
+            <Navbar.Brand href="/">판타지 쇼미더머니 11</Navbar.Brand>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+            <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-${expand}`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+              placement="end"
+            >
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                  판타지 쇼미더머니 11
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <Nav className="justify-content-end flex-grow-1 pe-3">
+                  <Nav.Link href="/">홈</Nav.Link>
+                  <Nav.Link href="Rules">규칙</Nav.Link>
+                  <Nav.Link href="Strategy">전략</Nav.Link>
+                </Nav>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
+          </Container>
+        </Navbar>
+      ))}
+    </>
   );
 }
 
@@ -66,13 +88,13 @@ function ScoreBoard(props) {
   }
 
   return (
-    <table class="table table-hover table-sm">
-      <thead class="thead thead-dark">
+    <Table striped bordered hover size="sm">
+      <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Player</th>
+          <th>#</th>
+          <th>Player</th>
           {pick}
-          <th scope="col">점수</th>
+          <th>점수</th>
         </tr>
       </thead>
       <tbody>
@@ -86,13 +108,13 @@ function ScoreBoard(props) {
                 </tr>
             ))}
       </tbody>
-    </table>
+    </Table>
   );
 }
 
 function Points() {
   return (
-    <table class="table">
+    <Table>
       <tbody>
       <tr>
         <td class="table-danger">1등</td>
@@ -127,7 +149,7 @@ function Points() {
         <td class="table-warning">0점</td>
       </tr>
       </tbody>
-    </table>
+    </Table>
   );
 }
 
@@ -142,7 +164,7 @@ function Main() {
   ];
 
   // 탈락자
-  let 음원 = [];
+  let 음원 = [""];
   let 디스 = [];
   let 본선 = [];
   let 세미 = [];
@@ -189,8 +211,7 @@ function App() {
     <>
         <NavBar></NavBar>
         <Routes>
-          <Route path="/Portfolio" element={<Main />} />
-          <Route path="" element={<Main />} />
+          <Route path="/" element={<Main />} />
           <Route path="/Rules" element={<Rules />} />
           <Route path="Strategy" element={<Strategy />} />
           <Route path="*" element={<p>Path not resolved</p>} />

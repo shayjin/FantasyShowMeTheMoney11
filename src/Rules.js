@@ -2,6 +2,7 @@ import React from 'react';
 import Main from './App';
 import './App.css';
 import {Link, Route, Routes, BrowserRouter } from 'react-router-dom';
+import { FC } from 'react';
 
 export const Rules = () => {
     
