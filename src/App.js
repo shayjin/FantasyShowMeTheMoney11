@@ -1,15 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
-import { Rules } from "./Rules";
-import { Strategy } from "./Strategy";
 import {Link, Route, Routes, BrowserRouter } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+
 import Table from 'react-bootstrap/Table';
 
 
@@ -20,25 +15,6 @@ function NavBar() {
         <Navbar key={expand} bg="light" expand={expand} className="mb-3">
           <Container fluid>
             <Navbar.Brand href="">판타지 쇼미더머니 11</Navbar.Brand>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-            <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-${expand}`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  판타지 쇼미더머니 11
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link to="">홈</Nav.Link>
-                  <Nav.Link to="/Rules">규칙</Nav.Link>
-                  <Nav.Link to="/Strategy">전략</Nav.Link>
-                </Nav>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
           </Container>
         </Navbar>
       ))}
@@ -154,17 +130,17 @@ function Points() {
 }
 
 function Main() {
-  let players = {1: "Ella", 2: "Jin", 3: "Shay", 4: "Woong"};
+  let players = {1: "Jin", 2: "Ella", 3: "Shay", 4: "Woong"};
 
   let possessions = [
-    ["", "", "", "", "", ""],
-    ["", "", "", "", "", ""],
-    ["", "", "", "", "", ""],
-    ["", "", "", "", "", ""],
+    ["이영지", "칠린호미", "크루셜스타", "제이켠", "김재욱", "김도윤"],
+    ["던말릭", "플리키뱅", "언오피셜보이", "로스", "다민이", "박명훈"],
+    ["허성현", "QM", "칸", "키츠요지", "맥대디", "토이고"],
+    ["NSW yoon", "노윤하", "잠비노", "블라세", "폴로다레드", "신세인"],
   ];
 
   // 탈락자
-  let 음원 = [""];
+  let 음원 = [];
   let 디스 = [];
   let 본선 = [];
   let 세미 = [];
@@ -213,8 +189,6 @@ function App() {
         <Routes>
           <Route path="/FantasyShowMeTheMoney11" element={<Main />} />
           <Route path="" element={<Main />} />
-          <Route path="/Rules" element={<Rules />} />
-          <Route path="/Strategy" element={<Strategy />} />
           <Route path="*" element={<p>Path not resolved</p>} />
         </Routes>
     </>
