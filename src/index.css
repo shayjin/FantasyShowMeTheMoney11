@@ -6,7 +6,16 @@ a {
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  width: 50%;
+}
+
+@media (max-width: 1110px) {
+  .table {
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
 }
 
 .des {
