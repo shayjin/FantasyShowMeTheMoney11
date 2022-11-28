@@ -19,7 +19,7 @@ function NavBar() {
     {['md'].map((expand) => (
         <Navbar key={expand} bg="light" expand={expand} className="mb-3">
           <Container fluid>
-            <Navbar.Brand href="/">판타지 쇼미더머니 11</Navbar.Brand>
+            <Navbar.Brand href="/FantasyShowMeTheMoney11">판타지 쇼미더머니 11</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -33,9 +33,9 @@ function NavBar() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="/">홈</Nav.Link>
-                  <Nav.Link href="Rules">규칙</Nav.Link>
-                  <Nav.Link href="Strategy">전략</Nav.Link>
+                  <Nav.Link href="/FantasyShowMeTheMoney11">홈</Nav.Link>
+                  <Nav.Link href="/FantasyShowMeTheMoney11/Rules/">규칙</Nav.Link>
+                  <Nav.Link href="/FantasyShowMeTheMoney11/Strategy/">전략</Nav.Link>
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
@@ -211,9 +211,9 @@ function App() {
     <>
         <NavBar></NavBar>
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/Rules" element={<Rules />} />
-          <Route path="Strategy" element={<Strategy />} />
+          <Route path="/FantasyShowMeTheMoney11" element={<Main />} />
+          <Route path="/FantasyShowMeTheMoney11/Rules" element={<Rules />} />
+          <Route path="/FantasyShowMeTheMoney11/Strategy" element={<Strategy />} />
           <Route path="*" element={<p>Path not resolved</p>} />
         </Routes>
     </>
