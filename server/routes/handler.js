@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/tweet', (req, res) => {
     const str = [{
         "name": "Shay Jin",
         "msg": "Hello world",
