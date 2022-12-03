@@ -83,7 +83,7 @@ function ScoreBoard(props) {
   }
 
   return (
-    <Table striped bordered hover size="sm">
+    <Table striped bordered hover size="sm" className='score'>
       <thead>
         <tr>
           <th>#</th>
@@ -110,7 +110,7 @@ function ScoreBoard(props) {
 function Points() {
   return (
     <Table>
-      <tbody>
+      <tbody className='table'>
       <tr>
         <td class="bg-danger">1등</td>
         <td class="bg-danger">8점</td>
@@ -203,10 +203,24 @@ function Main() {
     <div>
       <ScoreBoard players={players} possessions={possessions} rappers={rappers} rounds={rounds} colors={colors}></ScoreBoard>
       <Points></Points>
-      <p>hi</p>
+      <Suggestion></Suggestion>
     </div>
     
   );
+}
+
+function Suggestion() {
+  return (
+    <>
+      <div class="alert alert-success" role="alert">
+        개선해야할 부분 (제시해주세요)
+      </div>
+      <form method="POST" action="/post" className="suggestions" class="mb-3">
+        <textarea class="form-control" name="input" rows="3"></textarea>
+        <input type="submit" value="Send" class="btn btn-success"/>
+      </form>
+    </>    
+  )
 }
 
 function App() {
