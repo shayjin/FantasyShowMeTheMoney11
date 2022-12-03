@@ -4,9 +4,8 @@ import {Link, Route, Routes, BrowserRouter } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-
 import Table from 'react-bootstrap/Table';
-
+import { Tweet } from './Tweet';
 
 function NavBar() {
   return (
@@ -204,6 +203,7 @@ function Main() {
     <div>
       <ScoreBoard players={players} possessions={possessions} rappers={rappers} rounds={rounds} colors={colors}></ScoreBoard>
       <Points></Points>
+      <p>hi</p>
     </div>
     
   );
@@ -215,8 +215,9 @@ function App() {
         <NavBar></NavBar>
         <Routes>
           <Route path="/FantasyShowMeTheMoney11" element={<Main />} />
-          <Route path="" element={<Main />} />
+          <Route path="/" element={<Main />} />
           <Route path="*" element={<p>Path not resolved</p>} />
+          <Route path="/tweet" element={<Tweet/>}></Route>
         </Routes>
     </>
   );
