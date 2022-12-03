@@ -23,23 +23,40 @@ function NavBar() {
 }
 
 function ScoreBoard(props) {
-  var p = [[], [], [] ,[]];
+  var p = [[], [], [], []];
   var points = {};
 
   for (var j = 0; j < 4; j++) {
 
-    p[j].push(props.players[j+1]);
+    var added = false;
+    p[j].push({name: props.players[j+1], color:""});
     var point = 0;
 
     for (var i = 0; i < props.possessions[j].length; i++) {
       var ddc;
       ddc = props.possessions[j][i];
-      p[j].push(ddc);
+
       point += props.rappers[props.possessions[j][i]];
+      for (var k = 0; k < props.rounds.length; k++) {
+        for (var l = 0; l < props.rounds[k].length; l++) {
+          added = false;
+          if (props.rounds[k].includes(ddc)) {
+            p[j].push({name: ddc, color: props.colors[k]});
+            added = true;
+            break;
+          }
+        }
+      }
+
+      if (!added) {
+        p[j].push({name: ddc, color: ""});
+      }
+
     }
 
     points[j] = point;
   }
+
   var items = Object.keys(points).map(
     (key) => { return [key, points[key]] });
 
@@ -50,7 +67,6 @@ function ScoreBoard(props) {
   var keys = items.map(
     (e) => { return e[0] });
   
-  
   var index = 1;
 
   keys=keys.reverse();
@@ -59,8 +75,16 @@ function ScoreBoard(props) {
 
   for (var i = 1; i <= 6; i++) {
     pick.push(
-      <th scope="col">{i}픽</th>
+      <th scope="col" >{i}픽</th>
     )
+  }
+
+  var datas = [];
+
+  for (var possession in p) {
+    for (var rapper in p[possession]) {
+      datas.push(<td>{rapper}</td>);
+    }
   }
 
   return (
@@ -74,15 +98,15 @@ function ScoreBoard(props) {
         </tr>
       </thead>
       <tbody>
-          {keys.map(x => (
-                <tr>
-                  <th scope="row" key={p[x]}>{index++}</th>
-                    {p[x].map (y => (
-                      <td key={x + y}>{y}</td>
-                    ))}
-                  <td key={index}>{points[x]}</td>
-                </tr>
-            ))}
+        {p.map(y => (
+          <tr>
+            <th scope="row" key={y}>{index}</th>
+            {y.map (z =>(
+              <td key={z.name} class={z.color}>{z.name}</td>
+            ))}     
+            <td key={index}>{points[keys[index++ - 1]]}</td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );
@@ -93,36 +117,40 @@ function Points() {
     <Table>
       <tbody>
       <tr>
-        <td class="table-danger">1등</td>
-        <td class="table-danger">7점</td>
+        <td class="bg-danger">1등</td>
+        <td class="bg-danger">8점</td>
       </tr>
       <tr>
-        <td class="table-primary">2등</td>
-        <td class="table-primary">6점</td>
+        <td class="bg-warning">2등</td>
+        <td class="bg-warning">7점</td>
       </tr>
       <tr>
-        <td class="table-success">3등</td>
-        <td class="table-success">5점</td>
+        <td class="bg-primary">3등</td>
+        <td class="bg-primary">6점</td>
       </tr>
       <tr>
-        <td class="table-info">4등</td>
-        <td class="table-info">4점</td>
+        <td class="bg-success">4등</td>
+        <td class="bg-success">5점</td>
       </tr>
       <tr>
-        <td class="table-active">세미파이널 진출 (8명)</td>
-        <td class="table-active">3점</td>
+        <td class="table-danger">세미파이널 탈락 (4명)</td>
+        <td class="table-danger">4점</td>
       </tr>
       <tr>
-        <td class="table-light">본선 1차 진출 (14명)</td>
-        <td class="table-light">2점</td>
+        <td class="table-warning">본선 1차 탈락 (6명)</td>
+        <td class="table-warning">3점</td>
       </tr>
       <tr>
-        <td class="table-dark">디스전 진출  (16명)</td>
-        <td class="table-dark">1점</td>
+        <td class="table-primary">디스전 탈락  (2명)</td>
+        <td class="table-primary">2점</td>
       </tr>
       <tr>
-        <td class="table-warning">음원미션 진출  (8명)</td>
-        <td class="table-warning">0점</td>
+        <td class="table-success">음원미션 탈락 (4명)</td>
+        <td class="table-success">1점</td>
+      </tr>
+      <tr>
+        <td class="table-dark">마이크선택 탈락 (4명)</td>
+        <td class="table-dark">0점</td>
       </tr>
       </tbody>
     </Table>
@@ -140,6 +168,7 @@ function Main() {
   ];
 
   // 탈락자
+  let 마이크선택 = ["김도윤", "박명훈", "키츠요지", "언오피셜보이"];
   let 음원 = [];
   let 디스 = [];
   let 본선 = [];
@@ -149,7 +178,9 @@ function Main() {
   let second = "";
   let first = "";
 
-  let rounds = [음원, 디스, 본선,세미, fourth, third, second, first];
+  let rounds = [마이크선택, 음원, 디스, 본선,세미, fourth, third, second, first];
+  let colors = ["bg-danger", "bg-warning", "bg-primary", "bg-success", "table-danger", "table-warning", 
+  "table-primary", "table-success", "table-dark"];
 
   var curr = 0;
 
@@ -175,7 +206,7 @@ function Main() {
 
   return (
     <div>
-      <ScoreBoard players={players} possessions={possessions} rappers={rappers}></ScoreBoard>
+      <ScoreBoard players={players} possessions={possessions} rappers={rappers} rounds={rounds} colors={colors}></ScoreBoard>
       <Points></Points>
     </div>
     
