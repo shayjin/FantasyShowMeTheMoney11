@@ -25,35 +25,31 @@ function NavBar() {
 function ScoreBoard(props) {
   var p = [[], [], [], []];
   var points = {};
+  var added;
+  var ddc;
 
   for (var j = 0; j < 4; j++) {
-
-    var added = false;
     p[j].push({name: props.players[j+1], color:""});
     var point = 0;
 
     for (var i = 0; i < props.possessions[j].length; i++) {
-      var ddc;
       ddc = props.possessions[j][i];
+      added = false;
 
       point += props.rappers[props.possessions[j][i]];
       for (var k = 0; k < props.rounds.length; k++) {
         for (var l = 0; l < props.rounds[k].length; l++) {
-          added = false;
-          if (props.rounds[k].includes(ddc)) {
+          if (props.rounds[k].includes(ddc) && !added) {
             p[j].push({name: ddc, color: props.colors[k]});
+            
             added = true;
-            break;
           }
         }
       }
-
       if (!added) {
         p[j].push({name: ddc, color: ""});
       }
-
     }
-
     points[j] = point;
   }
 
@@ -98,12 +94,12 @@ function ScoreBoard(props) {
         </tr>
       </thead>
       <tbody>
-        {p.map(y => (
+        {keys.map(key => (
           <tr>
-            <th scope="row" key={y}>{index}</th>
-            {y.map (z =>(
-              <td key={z.name} class={z.color}>{z.name}</td>
-            ))}     
+            <th scope="row" key={key}>{index}</th>
+              {p[key].map(rapper => (
+                <td class={rapper.color}>{rapper.name}</td>
+            ))}
             <td key={index}>{points[keys[index++ - 1]]}</td>
           </tr>
         ))}
@@ -169,7 +165,7 @@ function Main() {
 
   // 탈락자
   let 마이크선택 = ["김도윤", "박명훈", "키츠요지", "언오피셜보이"];
-  let 음원 = [];
+  let 음원 = ["폴로다레드", "맥대디", "제이켠", "김재욱"];
   let 디스 = [];
   let 본선 = [];
   let 세미 = [];
@@ -179,8 +175,8 @@ function Main() {
   let first = "";
 
   let rounds = [마이크선택, 음원, 디스, 본선,세미, fourth, third, second, first];
-  let colors = ["bg-danger", "bg-warning", "bg-primary", "bg-success", "table-danger", "table-warning", 
-  "table-primary", "table-success", "table-dark"];
+  let colors = ["table-dark", "table-success","table-primary","table-warning",
+  "table-danger","bg-success","bg-primary","bg-warning", "bg-danger"];
 
   var curr = 0;
 
