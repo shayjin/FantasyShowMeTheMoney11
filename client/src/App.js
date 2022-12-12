@@ -113,38 +113,42 @@ function Points() {
       <tbody className='table'>
       <tr>
         <td class="bg-danger">1등</td>
-        <td class="bg-danger">8점</td>
+        <td class="bg-danger">9점</td>
       </tr>
       <tr>
         <td class="bg-warning">2등</td>
-        <td class="bg-warning">7점</td>
+        <td class="bg-warning">8점</td>
       </tr>
       <tr>
         <td class="bg-primary">3등</td>
-        <td class="bg-primary">6점</td>
+        <td class="bg-primary">7점</td>
       </tr>
       <tr>
         <td class="bg-success">4등</td>
-        <td class="bg-success">5점</td>
+        <td class="bg-success">6점</td>
       </tr>
       <tr>
         <td class="table-danger">세미파이널 탈락 (4명)</td>
-        <td class="table-danger">4점</td>
+        <td class="table-danger">5점</td>
       </tr>
       <tr>
-        <td class="table-warning">본선 1차 탈락 (6명)</td>
-        <td class="table-warning">3점</td>
+        <td class="table-warning">본선 1차 탈락 (2명)</td>
+        <td class="table-warning">4점</td>
       </tr>
       <tr>
-        <td class="table-primary">디스전 탈락  (2명)</td>
-        <td class="table-primary">2점</td>
+        <td class="table-primary">본선 마이크 선택 탈락 (4명)</td>
+        <td class="table-primary">3점</td>
       </tr>
       <tr>
-        <td class="table-success">음원미션 탈락 (4명)</td>
-        <td class="table-success">1점</td>
+        <td class="table-success">디스전 탈락  (2명)</td>
+        <td class="table-success">2점</td>
       </tr>
       <tr>
-        <td class="table-dark">마이크선택 탈락 (4명)</td>
+        <td class="bg-info">음원미션 탈락 (4명)</td>
+        <td class="bg-info">1점</td>
+      </tr>
+      <tr>
+        <td class="table-dark">음원미션 마이크선택 탈락 (4명)</td>
         <td class="table-dark">0점</td>
       </tr>
       </tbody>
@@ -165,7 +169,8 @@ function Main() {
   // 탈락자
   let 마이크선택 = ["김도윤", "박명훈", "키츠요지", "언오피셜보이"];
   let 음원 = ["폴로다레드", "맥대디", "제이켠", "김재욱"];
-  let 디스 = [];
+  let 디스 = ["플리키뱅", "다민이"];
+  let 본선마이크선택 = ["칠린호미", "크루셜스타"];
   let 본선 = [];
   let 세미 = [];
   let fourth = "";
@@ -173,8 +178,8 @@ function Main() {
   let second = "";
   let first = "";
 
-  let rounds = [마이크선택, 음원, 디스, 본선,세미, fourth, third, second, first];
-  let colors = ["table-dark", "table-success","table-primary","table-warning",
+  let rounds = [마이크선택, 음원, 디스, 본선마이크선택, 본선, 세미, fourth, third, second, first];
+  let colors = ["table-dark", "bg-info", "table-success","table-primary","table-warning",
   "table-danger","bg-success","bg-primary","bg-warning", "bg-danger"];
 
   var curr = 0;
