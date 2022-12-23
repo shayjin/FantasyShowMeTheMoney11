@@ -172,11 +172,11 @@ function Main() {
   let 디스 = ["플리키뱅", "다민이"];
   let 본선마이크선택 = ["칠린호미", "크루셜스타", "신세인", "로스"];
   let 본선 = ["QM", "토이고"];
-  let 세미 = [];
-  let fourth = "";
-  let third = "";
-  let second = "";
-  let first = "";
+  let 세미 = ["노윤하", "칸", "잠비노", "NSW yoon"];
+  let fourth = [];
+  let third = [];
+  let second = [];
+  let first = [];
 
   let rounds = [마이크선택, 음원, 디스, 본선마이크선택, 본선, 세미, fourth, third, second, first];
   let colors = ["table-dark", "bg-info", "table-success","table-primary","table-warning",
@@ -185,7 +185,7 @@ function Main() {
   var curr = 0;
 
   for (var round in rounds) {
-    if (rounds[round].length != 0 || rounds[round] != "") {
+    if (rounds[round].length > 0) {
       curr += 1;
     }
   }
@@ -196,6 +196,7 @@ function Main() {
     "다민이": curr, "김도윤": curr, "NSW yoon": curr, "크루셜스타": curr, "QM": curr, "김재욱": curr,
     "노윤하": curr, "블라세": curr, "칠린호미": curr, "키츠요지": curr, "폴로다레드": curr, "플리키뱅": curr
   };
+
 
   for (var round in rounds) {
     for (var rapper in rounds[round]) {
