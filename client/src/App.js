@@ -173,10 +173,10 @@ function Main() {
   let 본선마이크선택 = ["칠린호미", "크루셜스타", "신세인", "로스"];
   let 본선 = ["QM", "토이고"];
   let 세미 = ["노윤하", "칸", "잠비노", "NSW yoon"];
-  let fourth = [];
-  let third = [];
-  let second = [];
-  let first = [];
+  let fourth = ["던말릭"];
+  let third = ["블라세"];
+  let second = ["허성현"];
+  let first = ["이영지"];
 
   let rounds = [마이크선택, 음원, 디스, 본선마이크선택, 본선, 세미, fourth, third, second, first];
   let colors = ["table-dark", "bg-info", "table-success","table-primary","table-warning",
